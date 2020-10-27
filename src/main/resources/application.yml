@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: employee-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: employee_db
+      repositories:
+        type: auto
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+server:
+  port: 2020
