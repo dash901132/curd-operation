@@ -19,9 +19,9 @@ public class EmployeeController {
     private IEmployeeService employeeService;
 
 
-    @GetMapping
+    @GetMapping("/getall")
     @ApiOperation(value = "Get All employee", notes = "URI to get all employee.", produces = "application/json", consumes = "application/json", response = List.class)
-    public ResponseEntity<?> retriveAllemployees() {
+    public ResponseEntity<List<EmployeeDto>> retriveAllemployees() {
 
         try {
             List<EmployeeDto> employeeDtoList = employeeService.getAllEmployee();
@@ -36,18 +36,18 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "get employee", notes = "URI to get employee By Id.", produces = "application/json", consumes = "application/json", response = EmployeeDto.class)
-    public ResponseEntity<?> getEmployeeById(@PathVariable("id") String id) {
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") String id) {
         EmployeeDto employeeDto = employeeService.getByEmployeeId(id);
-        return (ResponseEntity<?>) ResponseEntity.ok(employeeDto);
+        return ResponseEntity.ok(employeeDto);
     }
 
     @PostMapping("/create")
     @ApiOperation(value = "Register employee", notes = "URI to register/add employee.", produces = "application/json", consumes = "application/json", response = EmployeeDto.class)
-    public ResponseEntity<?> createEmployee(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<String> createEmployee(@RequestBody EmployeeDto employeeDto) {
 
         try {
-            String employee = employeeService.create(employeeDto);
-            return (ResponseEntity<?>) ResponseEntity.ok(employee);
+            String result = employeeService.create(employeeDto);
+            return  ResponseEntity.ok(result);
         } catch (Exception exception) {
 
             return new ResponseEntity(exception,
@@ -57,7 +57,7 @@ public class EmployeeController {
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<String> update(@RequestBody EmployeeDto employeeDto) {
         try {
             String result = employeeService.update(employeeDto);
             return ResponseEntity.ok(result);

@@ -26,7 +26,6 @@ public class EmployeeServiceImpl implements IEmployeeService {
     @Override
     public String create(EmployeeDto employeeDto) {
         EmployeeState employeeState = new EmployeeDtoConverter().convertDtoToBean(employeeDto);
-        employeeState.setId(UUID.randomUUID().toString());
         repositroy.save(employeeState);
         return "Employee inserted sucessfully\t\t" + employeeState.getId();
     }
@@ -43,12 +42,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public EmployeeDto getByEmployeeId(String id) {
-        Optional<EmployeeState> employeeState = repositroy.findById(id);
-        EmployeeState state = employeeState.get();
-        EmployeeDto employeeDto = new EmployeeDtoConverter().convertBeanToDto(state);
-        if (employeeDto != null) {
-            return employeeDto;
-        }
-        return null;
+        EmployeeState employeeState = repositroy.getById(id);
+        EmployeeDto employeeDto = new EmployeeDtoConverter().convertBeanToDto(employeeState);
+
+        return employeeDto;
     }
 }

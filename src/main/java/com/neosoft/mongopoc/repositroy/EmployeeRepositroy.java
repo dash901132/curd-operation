@@ -8,4 +8,5 @@ import javax.xml.ws.RespectBinding;
 
 @Repository
 public interface EmployeeRepositroy extends MongoRepository<EmployeeState,String> {
+    EmployeeState getById(String id);
 }

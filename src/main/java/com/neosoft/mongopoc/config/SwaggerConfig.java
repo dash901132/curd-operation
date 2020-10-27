@@ -19,12 +19,11 @@ public class SwaggerConfig {
     @Bean
     public Docket apiDocket(){
         return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
-                                                       .paths(PathSelectors.any())
-                                                       .build().apiInfo(getApiInfo());
+                .paths(PathSelectors.any()).build().apiInfo(getApiInfo());
     }
 
     private ApiInfo getApiInfo(){
-        return new ApiInfo("Student Registration ", "created by pks", "pks 1.1.0", "http://localhost:2525/demo",
+        return new ApiInfo("Student Registration ", "created by dashrath", "pks 1.1.0", "http://localhost:2020/employee",
                 new Contact("Dashrath", "https://www.oracle.com", "shindedashrath72@gmail.com"), "oracle ver 020",
                 "https://spring.io", Collections.emptyList());
 

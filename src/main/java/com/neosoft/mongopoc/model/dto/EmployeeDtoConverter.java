@@ -19,7 +19,8 @@ public class EmployeeDtoConverter {
 
 
     public  EmployeeDto convertBeanToDto(EmployeeState employee)
-    {EmployeeDto employeeDto=new EmployeeDto();
+    {
+        EmployeeDto employeeDto=new EmployeeDto();
         BeanUtils.copyProperties(employee,employeeDto);
         return employeeDto;
 
