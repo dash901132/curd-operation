@@ -23,6 +23,9 @@ public class EmployeeState {
     protected long salary;
     protected String empMobNo;
 
+   /* public EmployeeState(String id, String empName, String dept, String empLastName, String empMobNo, long salary) {
+    }*/
+
     public String getEmpName() {
         return empName;
     }

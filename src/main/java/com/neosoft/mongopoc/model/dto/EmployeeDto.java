@@ -19,7 +19,7 @@ public class EmployeeDto {
         return id;
     }
 
-    public void setEmpId(String empId) {
+    public void setId(String id) {
         this.id = id;
     }
 

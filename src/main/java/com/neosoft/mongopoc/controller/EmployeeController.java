@@ -4,6 +4,7 @@ package com.neosoft.mongopoc.controller;
 import com.neosoft.mongopoc.model.dto.EmployeeDto;
 import com.neosoft.mongopoc.service.IEmployeeService;
 import io.swagger.annotations.ApiOperation;
+import io.vavr.control.Either;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,18 +37,25 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "get employee", notes = "URI to get employee By Id.", produces = "application/json", consumes = "application/json", response = EmployeeDto.class)
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") String id) {
-        EmployeeDto employeeDto = employeeService.getByEmployeeId(id);
-        return ResponseEntity.ok(employeeDto);
+    public ResponseEntity<?> getEmployeeById(@PathVariable("id") String id) {
+
+
+        try {
+            EmployeeDto dto = employeeService.getByEmployeeId(id);
+            return ResponseEntity.ok(dto);
+        } catch (Exception exception) {
+            return ResponseEntity.badRequest().body("employee not found");
+        }
+
     }
 
     @PostMapping("/create")
     @ApiOperation(value = "Register employee", notes = "URI to register/add employee.", produces = "application/json", consumes = "application/json", response = EmployeeDto.class)
     public ResponseEntity<String> createEmployee(@RequestBody EmployeeDto employeeDto) {
 
-        try {
+       try {
             String result = employeeService.create(employeeDto);
-            return  ResponseEntity.ok(result);
+            return ResponseEntity.ok(result);
         } catch (Exception exception) {
 
             return new ResponseEntity(exception,
