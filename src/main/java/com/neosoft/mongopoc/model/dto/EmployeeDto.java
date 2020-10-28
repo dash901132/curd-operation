@@ -8,19 +8,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeDto {
-    protected String empId;
+    protected String id;
     protected String empName;
     protected String empLastName;
     protected String dept;
     protected long salary;
     protected String empMobNo;
 
-    public String getEmpId() {
-        return empId;
+    public String getId() {
+        return id;
     }
 
     public void setEmpId(String empId) {
-        this.empId = empId;
+        this.id = id;
     }
 
     public String getEmpName() {

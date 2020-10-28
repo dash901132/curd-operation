@@ -37,6 +37,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
             employeeState.setDept(employeeDto.getDept());
             employeeState.setEmpName(employeeDto.getEmpName());
         }
+        repository.save(employeeState)
         return "Employee updated sucessfully\t\t" + employeeState.getId();
     }
 
